@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/Provider/ThemeProvider";
 
 const geistSans = Geist({
@@ -35,7 +34,7 @@ export default function RootLayout({
         defaultTheme="system"
         enableSystem 
         >
-          <Navbar></Navbar>
+       
 
           {children}
         </ThemeProvider>
