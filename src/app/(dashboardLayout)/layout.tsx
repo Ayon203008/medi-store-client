@@ -32,6 +32,8 @@ export default function Page({
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
+          
+          {/* * children */}
           {userInfo.role === "admin" ? admin : userInfo.role==="seller"? seller:customer}
         </div>
       </SidebarInset>

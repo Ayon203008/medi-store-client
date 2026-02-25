@@ -78,7 +78,7 @@ const Navbar = ({
 }: Navbar1Props) => {
   return (
     <section className={cn("py-4", className)}>
-      <div className="container">
+      <div className="w-full">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
@@ -138,10 +138,12 @@ const Navbar = ({
                   <SheetTitle>
                     <a href={logo.url} className="flex items-center gap-2">
                       <Image
-                        src={logo.src}
-                        className="max-h-8 dark:invert"
-                        alt={logo.alt}
-                      />
+                height={60}
+                width={120}
+                src={logo.src}
+                className="max-h-8 dark:invert"
+                alt={logo.alt}
+              />
                     </a>
                   </SheetTitle>
                 </SheetHeader>

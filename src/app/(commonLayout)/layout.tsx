@@ -8,6 +8,9 @@ export default function CommonLayout({
 }) {
   return <div>
     <Navbar></Navbar>
+    <div className="w-11/12 mx-auto">
+
     {children}
+    </div>
     </div>;
 }
