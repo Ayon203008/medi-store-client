@@ -34,8 +34,6 @@ export default function RootLayout({
         defaultTheme="system"
         enableSystem 
         >
-       
-
           {children}
         </ThemeProvider>
       </body>

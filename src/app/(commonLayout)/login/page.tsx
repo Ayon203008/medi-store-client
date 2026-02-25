@@ -6,4 +6,3 @@ export default function page() {
     <div><LoginForm/></div>
   )
 }
-// * This is login page
