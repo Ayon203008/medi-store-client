@@ -136,7 +136,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
         <Button form="login-form" className="w-full" type="submit">
           Login
         </Button> 
-        <Button className="w-full" onClick={()=>handleGoogleLogin()} >Continue with Google</Button>
+        <Button className="w-full" type="button" onClick={()=>handleGoogleLogin()} >Continue with Google</Button>
       </CardFooter>
     </Card>
   );

@@ -6,9 +6,11 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { UserServices } from "@/services/user.services";
+import { Roles } from "@/types/role.type";
 import React from "react";
 
-export default function Page({
+export default async function Page({
   customer,
   admin,
   seller,
@@ -17,9 +19,11 @@ export default function Page({
   admin: React.ReactNode;
   seller: React.ReactNode;
 }) {
-  const userInfo = {
-    role: "customer",
-  };
+
+  const {data}=await UserServices.getSession()
+  console.log(data)
+
+  const userInfo = data.user
 
   return (
     <SidebarProvider>
@@ -34,7 +38,7 @@ export default function Page({
         <div className="flex flex-1 flex-col gap-4 p-4">
           
           {/* * children */}
-          {userInfo.role === "admin" ? admin : userInfo.role==="seller"? seller:customer}
+          {userInfo.role === Roles.ADMIN ? admin : userInfo.role===Roles.SELLER? seller:customer}
         </div>
       </SidebarInset>
     </SidebarProvider>

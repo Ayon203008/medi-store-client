@@ -1,4 +1,6 @@
-import { Navbar } from "@/components/Navbar/Navbar";
+
+import Footer from "@/components/Shared/Footer/Footer";
+import { Navbar } from "@/components/Shared/Navbar/Navbar";
 import React from "react";
 
 export default function CommonLayout({
@@ -6,11 +8,13 @@ export default function CommonLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>
+  return <div className="flex flex-col min-h-screen">
     <Navbar></Navbar>
-    <div className="w-11/12 mx-auto">
-
+    <div className="w-11/12 mx-auto flex-grow">
     {children}
+    </div>
+    <div className="mt-10">
+      <Footer></Footer>
     </div>
     </div>;
 }

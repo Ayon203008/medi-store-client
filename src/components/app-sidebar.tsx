@@ -17,6 +17,7 @@ import { Routes } from "@/types/routes.type";
 import { AdminRoutes } from "@/routes/admin.routes";
 import { CusotmerRoutes } from "@/routes/customer.routes";
 import { sellerRoutes } from "@/routes/seller.routes";
+import { Roles } from "@/types/role.type";
 
 export function AppSidebar({
   user,
@@ -26,14 +27,14 @@ export function AppSidebar({
 }) {
   let routes: Routes[] = [];
   switch (user.role) {
-    case "admin":
+    case Roles.ADMIN:
       routes = AdminRoutes;
       break;
-    case "customer":
+    case Roles.CUSTOMER:
       routes = CusotmerRoutes;
       break;
 
-    case "seller":
+    case Roles.SELLER:
       routes = sellerRoutes;
       break;
     default:
