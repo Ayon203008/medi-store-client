@@ -36,7 +36,7 @@ export default async function MedicineDetailsPage({
         </CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full">View Event</Button>
+        <Button className="w-full">Add to cart</Button>
       </CardFooter>
     </Card>
   )
