@@ -4,14 +4,14 @@ export const CusotmerRoutes: Routes[] = [{
   title: "Customer Dashbaord",
   items: [{
     title: "Manage Profile",
-    url: "/customer-dashboard/manage-profile",
+    url: "/dashboard/manage-profile",
   },
   {
     title: "Wishlist",
-    url: "/customer-dashboard/wishlist",
+    url: "/dashboard/wishlist",
   },
   {
     title: "Orders",
-    url: "/customer-dashboard/orders",
+    url: "/dashboard/orders",
   }]
 }]

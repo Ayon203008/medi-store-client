@@ -27,6 +27,12 @@ import {
 import { ModeToggle } from "./ModeToggler";
 import Link from "next/link";
 import Image from "next/image";
+import { UserServices } from "@/services/user.services";
+import { authClient } from "@/lib/auth-client";
+import Router from "next/router";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 interface MenuItem {
   title: string;
@@ -63,7 +69,7 @@ const Navbar = ({
     url: "https://www.shadcnblocks.com",
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
     alt: "logo",
-    title: "Shadcnblocks.com",
+    title: "Medistore",
   },
   menu = [
     { title: "Home", url: "/" },
@@ -76,6 +82,28 @@ const Navbar = ({
   },
   className,
 }: Navbar1Props) => {
+
+
+
+  const {data:session}=authClient.useSession()
+  const router=useRouter()
+
+  const filterItem = menu.filter((item)=>{
+    if(item.url==="/dashboard"){
+      return !!session
+    }
+    return true
+  })
+
+
+  // * fucntion for singout
+  const handleSignOut = async()=>{
+    await authClient.signOut();
+    router.push("/login")
+    toast.success("Logout successfully")
+  }
+
+
   return (
     <section className={cn("py-4", className)}>
       <div className="w-full">
@@ -83,7 +111,7 @@ const Navbar = ({
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
             {/* Logo */}
-            <a href={logo.url} className="flex items-center gap-2">
+            <Link href={logo.url} className="flex items-center gap-2">
               <Image
                 height={60}
                 width={120}
@@ -94,25 +122,34 @@ const Navbar = ({
               <span className="text-lg font-semibold tracking-tighter">
                 {logo.title}
               </span>
-            </a>
+            </Link>
             <div className="flex items-center">
               <NavigationMenu>
                 <NavigationMenuList>
-                  {menu.map((item) => renderMenuItem(item))}
+                  {filterItem.map((item) => renderMenuItem(item))}
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
           </div>
           <div className="flex gap-2">
+          {
+            session? <Button variant="outline" size="sm" onClick={handleSignOut}>Logout</Button> : (
+                <div>
+
             <Button asChild variant="outline" size="sm">
               <Link href={auth.login.url}>{auth.login.title}</Link>
             </Button>
             <Button asChild size="sm">
               <Link href={auth.signup.url}>{auth.signup.title}</Link>
             </Button>
-            <ModeToggle></ModeToggle>
+            </div>
+            )
+          }
+            <ModeToggle/> 
           </div>
         </nav>
+
+
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
@@ -153,15 +190,15 @@ const Navbar = ({
                     collapsible
                     className="flex w-full flex-col gap-4"
                   >
-                    {menu.map((item) => renderMobileMenuItem(item))}
+                    {filterItem.map((item) => renderMobileMenuItem(item))}
                   </Accordion>
 
                   <div className="flex flex-col gap-3">
                     <Button asChild variant="outline">
-                      <a href={auth.login.url}>{auth.login.title}</a>
+                      <Link href={auth.login.url}>{auth.login.title}</Link>
                     </Button>
                     <Button asChild>
-                      <a href={auth.signup.url}>{auth.signup.title}</a>
+                      <Link href={auth.signup.url}>{auth.signup.title}</Link>
                     </Button>
                   </div>
                 </div>
@@ -178,7 +215,7 @@ const renderMenuItem = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuLink asChild href={item.url}>
+        <NavigationMenuLink asChild >
         <Link href={item.url}>{item.title}</Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
@@ -187,11 +224,8 @@ const renderMenuItem = (item: MenuItem) => {
 
   return (
     <NavigationMenuItem key={item.title}>
-      <NavigationMenuLink
-        href={item.url} 
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
-      >
-        {item.title}
+      <NavigationMenuLink asChild >
+       <Link className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground" href={item.url}>{item.title}</Link>
       </NavigationMenuLink>
     </NavigationMenuItem>
   );
@@ -214,15 +248,15 @@ const renderMobileMenuItem = (item: MenuItem) => {
   }
 
   return (
-    <a key={item.title} href={item.url} className="text-md font-semibold">
+    <Link key={item.title} href={item.url} className="text-md font-semibold">
       {item.title}
-    </a>
+    </Link>
   );
 };
 
 const SubMenuLink = ({ item }: { item: MenuItem }) => {
   return (
-    <a
+    <Link
       className="flex min-w-80 flex-row gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none hover:bg-muted hover:text-accent-foreground"
       href={item.url}
     >
@@ -235,7 +269,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
           </p>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 

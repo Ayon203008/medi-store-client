@@ -12,6 +12,7 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z, { file } from "zod";
 
@@ -24,6 +25,8 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
     callbackURL:"http://localhost:3000",
   });
 };
+
+const router= useRouter()
   
   const formSchema = z.object({
     name:z.string().min(1,"This field is required"),
@@ -46,6 +49,9 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
           return
         }
         toast.success("User created successfully",{id:toastId})
+
+        router.push("/")
+        
       }catch(err){
         toast.error("Something went wrong , Please try again later",{
           id:toastId
@@ -84,6 +90,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name={field.name}
                 value={field.state.value}
                 onChange={(e)=>field.handleChange(e.target.value)}  
+                placeholder="Enter your name"
                   />  
                  {isInvalid && (
                       <FieldError errors={field.state.meta.errors} />
@@ -101,6 +108,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name={field.name}
                 value={field.state.value}
                 onChange={(e)=>field.handleChange(e.target.value)}  
+                  placeholder="Enter your email"
                   />  
                   {
                     isInvalid && (
@@ -120,6 +128,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name={field.name}
                 value={field.state.value}
                 onChange={(e)=>field.handleChange(e.target.value)}  
+                  placeholder="Enter your password"
                   />  
                   {
                     isInvalid && (

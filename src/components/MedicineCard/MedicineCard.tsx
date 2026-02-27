@@ -1,40 +1,42 @@
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardAction,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import { IMedicine } from "@/types/medicines.type"
+import Image from "next/image"
 import Link from "next/link"
 
-export default function MedicineCard({medi}:{medi:IMedicine}) {
+export default function MedicineCard({ medi }: { medi: IMedicine }) {
   return (
-    <Card className="relative mx-auto w-full max-w-sm pt-0">
-      <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
-      <img
-        src="https://avatar.vercel.sh/shadcn1"
-        alt="Event cover"
-        className="relative z-20 aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
-      />
-      <CardHeader>
-        <CardAction>
-     
-        </CardAction>
-        <CardTitle>{medi.name}</CardTitle>
-        <CardDescription>
+    <Card className="relative mx-auto w-full max-w-sm overflow-hidden flex flex-col h-full">
+      {/* Image Container with Fixed Height & Aspect Ratio */}
+      <div className="relative w-full h-48 overflow-hidden">
+        <Image
+          src={medi.image || "/placeholder-medicine.jpg"} // Fallback image if null
+          alt={medi.name}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+
+      <CardHeader className="flex-grow">
+        <CardTitle className="line-clamp-1">{medi.name}</CardTitle>
+        <CardDescription className="line-clamp-2 min-h-[40px]">
           {medi.description}
         </CardDescription>
-        <CardDescription>
-          {medi.price}
-        </CardDescription>
+        <div className="mt-2 text-lg font-bold text-primary">
+          {medi.price.toFixed(2)} tk
+        </div>
       </CardHeader>
+
       <CardFooter>
-        <Link href={`/medicines/${medi.id}`}>
-        <Button className="w-full">View More</Button>
+        <Link href={`/medicines/${medi.id}`} className="w-full">
+          <Button className="w-full">View More</Button>
         </Link>
       </CardFooter>
     </Card>

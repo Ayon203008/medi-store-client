@@ -8,6 +8,14 @@ export interface IMedicine {
   image?: string | null;
   manufacturer: string;
   Category_id: string;
+  Category?: { // এই অংশটি যোগ করুন
+    id: string;
+    name: string;
+  };
+  Seller?:{
+    id:string;
+    name:string
+  }
   Seller_id: string;
   createdAt: Date;
   updatedAt: Date;

@@ -7,8 +7,8 @@ export default async function page() {
   console.log(data)
   return (
     <div>
-        <h1 className='text-4xl text-center mb-10'>Medicines</h1>
-        <div className='grid grid-cols-3 gap-5'>
+        <h1 className='text-6xl font-serif text-center mb-10'>Medicines</h1>
+        <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
 
         {
           data?.data?.map((medi)=>(<MedicineCard key={medi.id} medi={medi}/>))

@@ -12,6 +12,7 @@ import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z, { file } from "zod";
 
@@ -25,27 +26,31 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
   });
 };
   
+  const router =useRouter()
+
+
   const formSchema = z.object({
-    name:z.string().min(1,"This field is required"),
+   
     email: z.string().email("Invalid email"),
     password:z.string().min(8,"Minmum 8 charecters required")
   })
  
   const form = useForm({
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
     onSubmit: async({value})=>{
-      const toastId = toast.loading("Creating User")
+      const toastId = toast.loading("Login User")
       try{
         const {data,error}=await authClient.signIn.email(value)
         if(error){
           toast.error(error.message,{id:toastId})
           return
         }
-        toast.success("User created successfully",{id:toastId})
+        toast.success("Login successfully",{id:toastId})
+        router.push("/")
+        
       }catch(err){
         toast.error("Something went wrong , Please try again later",{
           id:toastId
@@ -74,24 +79,6 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
           }}
         >
           <FieldGroup>
-          
-            <form.Field name="name" children={(field)=>{
-              const isInvalid=field.state.meta.isTouched && !field.state.meta.isValid
-              return(<Field>
-                <FieldLabel htmlFor={field.name}>Name</FieldLabel> 
-                <Input type="text" 
-                id={field.name} 
-                name={field.name}
-                value={field.state.value}
-                onChange={(e)=>field.handleChange(e.target.value)}  
-                  />  
-                 {isInvalid && (
-                      <FieldError errors={field.state.meta.errors} />
-                    )}
-              </Field>)
-            }}/>
-
-
                <form.Field name="email" children={(field)=>{
               const isInvalid=field.state.meta.isTouched && !field.state.meta.isValid
               return(<Field>
@@ -101,6 +88,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name={field.name}
                 value={field.state.value}
                 onChange={(e)=>field.handleChange(e.target.value)}  
+                placeholder="Enter your email"
                   />  
                   {
                     isInvalid && (
@@ -120,6 +108,7 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
                 name={field.name}
                 value={field.state.value}
                 onChange={(e)=>field.handleChange(e.target.value)}  
+                placeholder="Enter your password"
                   />  
                   {
                     isInvalid && (

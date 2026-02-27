@@ -4,15 +4,15 @@ export const sellerRoutes:Routes[]=[{
   title: "Seller Dashboard",
   items: [{
     title: "Add Medicine",
-    url: "/add-medicine",
+    url: "/dashboard/add-medicine",
   },
   {
     title: "Update Medicine",
-    url: "/update-medicine",
+    url: "/dashboard/update-medicine",
   },
   {
     title: "Delete Medicine",
-    url: "/delete-medicine",
+    url: "/dashboard/delete-medicine",
   }
 ]
 }]
