@@ -15,7 +15,7 @@ export default async function FeaturedMedicine() {
         <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
       
               {
-                data?.data?.map((medi)=>(<MedicineCard key={medi.id} medi={medi}/>))
+                data?.data?.slice(0,6).map((medi)=>(<MedicineCard key={medi.id} medi={medi}/>))
               }
               </div>
     </div>
