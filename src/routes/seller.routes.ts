@@ -7,12 +7,12 @@ export const sellerRoutes:Routes[]=[{
     url: "/dashboard/add-medicine",
   },
   {
-    title: "Update Medicine",
-    url: "/dashboard/update-medicine",
+    title: "Medicine Management",
+    url: "/dashboard/medicine-management",
   },
   {
-    title: "Delete Medicine",
-    url: "/dashboard/delete-medicine",
+    title: "Manage Orders",
+    url: "/dashboard/manage-orders",
   },
   {
     title: "Home",

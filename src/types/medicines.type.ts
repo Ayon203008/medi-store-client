@@ -8,7 +8,7 @@ export interface IMedicine {
   image?: string | null;
   manufacturer: string;
   Category_id: string;
-  Category?: { // এই অংশটি যোগ করুন
+  Category?: { 
     id: string;
     name: string;
   };

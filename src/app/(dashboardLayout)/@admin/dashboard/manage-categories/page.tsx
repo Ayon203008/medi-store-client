@@ -14,13 +14,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Pencil, Trash2, Plus } from "lucide-react";
 import { CategoryServices } from "@/services/category.services";
 import { any } from "zod";
+import { Category } from "@/types/category.types";
 
-type Category = {
-  id: string;
-  name: string;
-  description: string;
-  createdAt: string;
-};
+
 
 export default function CategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([]);

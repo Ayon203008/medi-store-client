@@ -21,15 +21,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { User } from "@/types/user.types";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  status: string;
-  createdAt: string;
-};
+
 
 export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);

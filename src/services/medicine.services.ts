@@ -44,7 +44,8 @@ export const MedicineServices = {
     DeleteMedicine:async function(id:string){
         try{    
             const res=await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/medicine/${id}`,{
-                method:"DELETE"
+                method:"DELETE",
+                credentials:"include"
             })
             const data = await res.json()
             return {data:data,error:null}
@@ -54,13 +55,15 @@ export const MedicineServices = {
         }
     },
     // * Update medicine data 
-    updateMedicine : async function(id:string){
+    updateMedicine : async function(id:string,MedicineData:any){
         try{
        const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/medicine/${id}`,{
            method:"PATCH",
+           credentials:"include",
            headers  :{
                "Content-Type":"application/json"
-           }
+           },
+           body:JSON.stringify(MedicineData)
        })
         const data = await res.json()
         return {data:data,error:null}

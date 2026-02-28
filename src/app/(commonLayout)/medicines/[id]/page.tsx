@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { IMedicine } from "@/types/medicines.type";
+import AddToCart from "@/components/AddToCart/AddToCart";
 
 export default async function MedicineDetailsPage({
   params,
@@ -119,10 +120,7 @@ export default async function MedicineDetailsPage({
                 <div className="grid grid-cols-1 gap-4">
            
                   <div className="flex gap-4">
-                    <Button variant="outline" size="lg" className="flex-1 h-14 rounded-full border-2">
-                      SAVE TO WISHLIST
-                    </Button>
-                   
+                  <AddToCart medicineId={medicine.id}/>               
                   </div>
                 </div>
 

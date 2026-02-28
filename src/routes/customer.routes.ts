@@ -7,8 +7,8 @@ export const CusotmerRoutes: Routes[] = [{
     url: "/dashboard/manage-profile",
   },
   {
-    title: "Wishlist",
-    url: "/dashboard/wishlist",
+    title: "My Cart",
+    url: "/dashboard/my-cart",
   },
   {
     title: "Orders",
