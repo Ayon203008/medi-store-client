@@ -13,6 +13,10 @@ export const sellerRoutes:Routes[]=[{
   {
     title: "Delete Medicine",
     url: "/dashboard/delete-medicine",
+  },
+  {
+    title: "Home",
+    url: "/",
   }
 ]
 }]

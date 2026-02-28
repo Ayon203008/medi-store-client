@@ -13,6 +13,10 @@ export const AdminRoutes: Routes[] = [{
   {
     title: "Manage Categories",
     url: "/manage-categories",
+  },
+  {
+    title: "Home",
+    url: "/",
   }
 ]
 }]

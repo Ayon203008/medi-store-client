@@ -13,5 +13,9 @@ export const CusotmerRoutes: Routes[] = [{
   {
     title: "Orders",
     url: "/dashboard/orders",
+  },
+  {
+    title: "Home",
+    url: "/",
   }]
 }]
