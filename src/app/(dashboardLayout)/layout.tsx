@@ -6,7 +6,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { UserServices } from "@/services/user.services";
+import { SessionServices } from "@/services/session.services";
 import { Roles } from "@/types/role.type";
 import React from "react";
 
@@ -20,7 +20,7 @@ export default async function Page({
   seller: React.ReactNode;
 }) {
 
-  const {data}=await UserServices.getSession()
+  const {data}=await SessionServices.getSession()
   console.log(data)
 
   const userInfo = data.user

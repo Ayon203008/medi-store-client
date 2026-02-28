@@ -35,7 +35,7 @@ export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ সব users fetch করুন
+
   useEffect(() => {
     const fetchUsers = async () => {
       const { data } = await UserServices.getAllUsers();
@@ -62,6 +62,7 @@ export default function UsersPage() {
     toast.success("Role updated successfully", { id: toastId });
   };
 
+
   // ✅ Status Block/Unblock
   const handleStatusChange = async (userId: string, currentStatus: string) => {
     const newStatus = currentStatus === "ACTIVE" ? "BLOCKED" : "ACTIVE";
@@ -84,6 +85,7 @@ export default function UsersPage() {
     );
   };
 
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -91,6 +93,7 @@ export default function UsersPage() {
       </div>
     );
   }
+  
 
   return (
     <div className="p-6">

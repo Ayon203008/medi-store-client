@@ -4,15 +4,19 @@ export const AdminRoutes: Routes[] = [{
   title: "Admin Dashboard",
   items: [{
     title: "Manage User",
-    url: "/manage-user",
+    url: "/dashboard/manage-user",
+  },
+  {
+    title: "Manage Medicines",
+    url: "/dashboard/manage-medicines",
   },
   {
     title: "Manage Orders",
-    url: "/manage-orders",
+    url: "/dashboard/manage-orders",
   },
   {
     title: "Manage Categories",
-    url: "/manage-categories",
+    url: "/dashboard/manage-categories",
   },
   {
     title: "Home",
