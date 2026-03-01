@@ -10,6 +10,10 @@ export const cartServices = {
                 body: JSON.stringify( cartData )
             })
             const data = await res.json()
+            if(!res.ok){
+                console.log("server error",data);
+            }
+
             return { data: data, error: null }
         } catch (err) {
             return { data: null, error: { message: "Something went wrong" } }
@@ -26,5 +30,16 @@ export const cartServices = {
         } catch (err) {
             return { data: null, error: { message: "Something went wrong" } }
         }
-    }
+    },
+    GetAllCart:async function () {
+        try{
+            const res= await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cart`,{
+                credentials:"include"
+            })
+            const data = await res.json()
+            return {data:data,error:null}
+        }catch(err){
+            return {data:null,error:{message:"Something went wrong"}}
+        }
+    },
 }

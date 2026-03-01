@@ -5,11 +5,11 @@ import React from 'react'
 import { toast } from 'sonner'
 import { Button } from '../ui/button'
 
-export default function AddToCart() {
+export default function AddToCart({ medicineId }: { medicineId: string }) {
 
      const router = useRouter()
 
-     const handleAddToCart=async({ medicineId }: { medicineId: string })=>{
+     const handleAddToCart=async()=>{
         const toastId=toast.loading("Adding to cart...")
         const {error}=await cartServices.addToCart({
             Medicine_id:medicineId,

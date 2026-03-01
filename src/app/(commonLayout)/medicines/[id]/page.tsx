@@ -8,6 +8,7 @@ import Image from "next/image";
 import { IMedicine } from "@/types/medicines.type";
 import AddToCart from "@/components/AddToCart/AddToCart";
 
+
 export default async function MedicineDetailsPage({
   params,
 }: {
@@ -122,6 +123,7 @@ export default async function MedicineDetailsPage({
                   <div className="flex gap-4">
                   <AddToCart medicineId={medicine.id}/>               
                   </div>
+             
                 </div>
 
                 <p className="text-[10px] text-center text-muted-foreground uppercase tracking-widest">
