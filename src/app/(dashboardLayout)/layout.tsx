@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { AppSidebar } from "@/components/app-sidebar";
 import {} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";

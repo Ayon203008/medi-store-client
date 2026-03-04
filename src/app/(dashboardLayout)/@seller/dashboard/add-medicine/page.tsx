@@ -34,12 +34,8 @@ type Category = {
 const medicineSchema = z.object({
   name: z.string().min(1, "Medicine name is required"),
   description: z.string().min(10, "Description must be at least 10 characters"),
-  price: z
-    .number({ invalid_type_error: "Price must be a number" })
-    .min(1, "Price must be greater than 0"),
-  stock: z
-    .number({ invalid_type_error: "Stock must be a number" })
-    .min(0, "Stock cannot be negative"),
+  price: z.number().min(1, "Price must be greater than 0"),
+  stock: z.number().min(0, "Stock cannot be negative"),
   image: z.string().url("Must be a valid image URL"),
   manufacturer: z.string().min(1, "Manufacturer is required"),
   Category_id: z.string().min(1, "Category is required"),

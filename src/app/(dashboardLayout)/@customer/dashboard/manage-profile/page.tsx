@@ -121,14 +121,14 @@ export default function ManageProfilePage() {
             </Avatar>
 
             {/* * User এর basic info */}
-            <div className="text-center sm:text-left space-y-1">
+            {/* <div className="text-center sm:text-left space-y-1">
               <CardTitle className="text-xl">{session?.user?.name}</CardTitle>
               <CardDescription>{session?.user?.email}</CardDescription>
          
               <Badge variant="outline" className="text-xs mt-1">
                 {session?.user?.role}
               </Badge>
-            </div>
+            </div> */}
           </div>
         </CardHeader>
       </Card>

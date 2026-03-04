@@ -7,3 +7,6 @@ export interface User  {
   createdAt: string;
 };
 
+interface Session {
+  user: User;
+}

@@ -15,8 +15,11 @@ export default async function MedicineDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: medicine }: { data: IMedicine } = await MedicineServices.GetMedicineById(id);
-
+  const { data: medicine } = await MedicineServices.GetMedicineById(id);
+  if (!medicine) {
+    // Handle the case where medicine is null
+    return <div>Medicine not found</div>;
+  }
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-6 lg:p-12">
       <div className="max-w-7xl mx-auto space-y-8">

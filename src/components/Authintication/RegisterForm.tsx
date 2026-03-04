@@ -33,14 +33,14 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
 
   const router = useRouter();
 
-  const formSchema = z.object({
-    name: z.string().min(1, "This field is required"),
-    email: z.string().email("Invalid email"),
-    password: z.string().min(8, "Minmum 8 charecters required"),
-    role: z.enum(["CUSTOMER", "SELLER"], {
-      required_error: "Please select a role",
-    }),
-  });
+const formSchema = z.object({
+  name: z.string().min(1, "This field is required"),
+  email: z.string().email("Invalid email"),
+  password: z.string().min(8, "Minimum 8 characters required"),
+  role: z.enum(["CUSTOMER", "SELLER"]).refine(value => value !== null, {
+    message: "Please select a role",
+  }),
+});
 
   const form = useForm({
     defaultValues: {
